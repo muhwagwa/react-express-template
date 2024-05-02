@@ -1,0 +1,22 @@
+{
+    "name": "express-react-app",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "repository": "git@github.com:Dirk94/express-react-app.git",
+    "author": "muhwagwa <hyeju.naaa@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "dependencies": {
+        "@types/express": "^4.17.2",
+        "dotenv": "^16.4.5",
+        "express": "^4.17.1"
+    },
+    "scripts": {
+        "start": "npx ts-node index.ts",
+        "build": "npx tsc && mv ./build ../build/backend"
+    },
+    "devDependencies": {
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.5"
+    }
+}

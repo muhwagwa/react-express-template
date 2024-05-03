@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npx ts-node ./backend/index.ts",
+    "start": "npx ts-node ./backend/server.ts",
     "build": "concurrently \"cd backend && npm run build\" \"cd frontend && npm run build\" "
   },
   "dependencies": {

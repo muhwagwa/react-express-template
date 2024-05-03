@@ -8,11 +8,14 @@
     "private": false,
     "dependencies": {
         "@types/express": "^4.17.2",
+        "axios": "^1.6.8",
+        "body-parser": "^1.20.2",
         "dotenv": "^16.4.5",
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "nodemon": "^3.1.0"
     },
     "scripts": {
-        "start": "npx ts-node index.ts",
+        "start": "npx ts-node server.ts",
         "build": "npx tsc && mv ./build ../build/backend"
     },
     "devDependencies": {

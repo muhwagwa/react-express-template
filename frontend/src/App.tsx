@@ -6,6 +6,7 @@ import Note from './components/Note';
 import Grid from '@mui/material/Grid';
 import notes from './note';
 import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)

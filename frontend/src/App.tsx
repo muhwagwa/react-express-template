@@ -4,9 +4,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Note from './components/Note';
 import Grid from '@mui/material/Grid';
-import notes from './note';
+// import notes from './note';
 import Login from './components/Login';
-import Register from './components/Register';
+import { notes } from './note.json';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -16,17 +16,19 @@ function App() {
       <div>
         <Header />
         {isLoggedIn ? 
+        <div>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {notes.map(noteItem => (
             <Grid item xs={4}>
               <Note
-                key={noteItem.key}
+                id={noteItem.id}
                 title={noteItem.title}
                 content={noteItem.content}
               />
             </Grid>
           ))}
         </Grid>
+        </div>
         : <Login />}
         
       </div>

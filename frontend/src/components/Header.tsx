@@ -1,8 +1,12 @@
+import { Stack } from "@mui/material";
+import Navbar from "./Navbar";
+
 function Header() {
   return (
-    <header>
+    <Stack spacing={20} direction="row" alignItems={"center"}>
       <h1>Food Facts</h1>
-    </header>
+      <Navbar />
+    </Stack>
   );
 }
 

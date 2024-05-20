@@ -7,9 +7,20 @@ import Grid from '@mui/material/Grid';
 // import notes from './note';
 import Login from './components/Login';
 import { notes } from './note.json';
+import axios from 'axios';
 
+
+const fetchPosts = async () => {
+  try {
+    const resp = await axios.get("https://localhost:3000/posts");
+    console.log(resp);
+  } catch (e) {
+    console.log(e);
+  }
+}
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  fetchPosts();
 
   return (
     <>

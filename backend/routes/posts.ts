@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import express from "express";
+import pool from '../db';
+
 
 const router = express.Router();
 
@@ -34,9 +36,16 @@ let posts = [
 let lastId = 3;
 
 // GET all posts
-router.get("/", (req: Request, res: Response) => {
-  console.log(posts);
-  res.json(posts);
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const data = await pool.query('SELECT * FROM public.posts')
+    res.status(200).send(data.rows)
+  } catch (err) {
+    console.log(err)
+    res.sendStatus(500)
+  }
+  // console.log(posts);
+  // res.json(posts);
 });
 
 // GET a specific post by id
@@ -47,18 +56,16 @@ router.get("/:id", (req: Request, res: Response) => {
 });
 
 // POST a new post
-router.post("/", (req: Request, res: Response) => {
-  const newId = lastId += 1;
-  const post = {
-    id : newId,
-    title: req.body.title,
-    content: req.body.content,
-    author: req.body.author,
-    date: new Date().toISOString(),
-  };
-  lastId = newId;
-  posts.push(post);
-  res.status(201).json(post);
+router.post("/", async (req: Request, res: Response) => {
+  const { title, content, author } = req.body;
+  const date = new Date().toISOString();
+  try {
+      await pool.query('INSERT INTO public.posts (title, content, author, date) VALUES ($1, $2, $3, $4)', [title, content, author, date])
+      res.status(200).send({ message: "Successfully added a post" })
+  } catch (err) {
+      console.log(err)
+      res.sendStatus(500)
+  }
 });
 
 // PATCH a post when you just want to update one parameter

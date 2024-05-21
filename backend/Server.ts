@@ -4,28 +4,19 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import usersRouter from './routes/users';
 import postsRouter from './routes/posts';
-import pg from "pg";
-
 import * as path from "path";
 
-const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "",
-  password: "",
-  port: ,
-});
 
 const app = express();
 const port = 3000;
 
-db.connect();
-
+//middleware
 app.use(express.static(path.resolve("./") + "/build/frontend"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//routes
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 

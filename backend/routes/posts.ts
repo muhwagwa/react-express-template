@@ -1,12 +1,9 @@
 import { Request, Response, request } from "express";
-import express from "express";
 import pool from '../db';
 
 
-const router = express.Router();
-
 // GET all posts
-router.get("/", async (req: Request, res: Response) => {
+export const getPosts = async (req: Request, res: Response) => {
   try {
     const result = await pool.query('SELECT * FROM public.posts')
     res.status(200).send(result.rows)
@@ -14,10 +11,10 @@ router.get("/", async (req: Request, res: Response) => {
     console.log(err)
     res.sendStatus(500)
   }
-});
+};
 
 // POST a new post
-router.post("/", async (req: Request, res: Response) => {
+export const postPost = async (req: Request, res: Response) => {
   const { title, content, author } = req.body;
   const date = new Date().toISOString();
   try {
@@ -27,10 +24,10 @@ router.post("/", async (req: Request, res: Response) => {
       console.log(err)
       res.sendStatus(500)
   }
-});
+};
 
 // GET a specific post by id
-router.get("/:id", async (req: Request, res: Response) => {
+export const getPost = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id)
   try{
     const result = await pool.query('SELECT * FROM public.posts WHERE id = $1', [id])
@@ -39,10 +36,10 @@ router.get("/:id", async (req: Request, res: Response) => {
     console.log(err)
     res.sendStatus(500)
   }
-});
+};
 
 // PUT update a specific post by providing the post id
-router.put("/:id", async (req: Request, res: Response) => {
+export const putPost = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id)
   const { title, content, author } = req.body
   try {
@@ -51,10 +48,10 @@ router.put("/:id", async (req: Request, res: Response) => {
   } catch (err) {
     res.sendStatus(500)
   }
-});
+};
 
 // DELETE a specific post by providing the post id
-router.delete("/:id", async (req: Request, res: Response) => {
+export const deletePost = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id)
   try {
     const result = await pool.query('DELETE FROM public.posts WHERE id = $1', [id])
@@ -62,6 +59,4 @@ router.delete("/:id", async (req: Request, res: Response) => {
   } catch (err) {
     res.sendStatus(500)
   }
-});
-
-export default router;
+};

@@ -31,7 +31,7 @@ export const getPost = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id)
   try{
     const result = await pool.query('SELECT * FROM public.posts WHERE id = $1', [id])
-    res.status(200).send(result.rows)
+    res.status(200).send(result.rows[0])
   } catch (err) {
     console.log(err)
     res.sendStatus(500)

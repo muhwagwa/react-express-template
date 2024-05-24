@@ -4,22 +4,31 @@ import axios from "axios";
 
 function NoteDetail() {
     const { id } = useParams();
-    const [post, setPost] = useState(null)
-    useEffect(() => {
+    const [post, setPost] = useState();
+    const fetchPost = (id: string) => {
       axios.get('http://localhost:3000/posts/' + id)
         .then(response => {
           setPost(response.data);
-          console.log(post)
+          console.log(response.data)
         })
         .catch(error => {
           console.log(error);
         });
+    }
+    useEffect(() => {
+      if (id){
+        fetchPost(id);
+      }
     }, [id])
   return (
-    post && <div>
-        <p>{post?.id}</p>
-        <p>{post?.title}</p>
-        <p>{post?.content}</p>
+    <div>
+      {post ? (
+        <div>
+          <p>{post?.id}</p>
+          <p>{post?.title}</p>
+          <p>{post?.content}</p>
+        </div>
+      ) : <p>loading</p>}
     </div>
   );
 }

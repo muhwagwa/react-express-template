@@ -8,5 +8,6 @@ export const router = createBrowserRouter ([
     { path: "/", element: <App />},
     { path: "/login", element: <Login />},
     { path: "/register", element: <Register />},
+    { path: "/posts", element: <App />},
     { path: ":id", element: <NoteDetail />},
   ]);

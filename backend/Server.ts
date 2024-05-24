@@ -10,12 +10,14 @@ import { Strategy } from "passport-local";
 import pool from './db';
 import * as authFunc from './auth';
 import bcrypt from "bcrypt";
+import cors from "cors";
 
 
 export const app = express();
 const port = 3000;
 
 //middleware
+app.use(cors())
 app.use(express.static(path.resolve("./") + "/build/frontend"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +36,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //routes
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
@@ -46,6 +49,12 @@ app.post("/register", authFunc.registerUser);
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/', successRedirect: '/posts' }),
 );
+app.post('/logout', function(req: any, res: any, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+});
 
 
 passport.use(new Strategy(async function(username, password, cb) {
@@ -71,6 +80,7 @@ passport.use(new Strategy(async function(username, password, cb) {
     } catch (err) {
         return cb(err);
     }
+    passport.authenticationMiddleware = authFunc.authenticationMiddleware
 }
   ));
 

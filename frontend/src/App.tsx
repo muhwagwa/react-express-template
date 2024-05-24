@@ -12,8 +12,9 @@ import axios from 'axios';
 
 const fetchPosts = async () => {
   try {
-    const resp = await axios.get("https://localhost:3000/posts");
-    console.log(resp);
+    const resp = await axios.get("http://localhost:3000/posts");
+    console.log("he")
+    console.log(resp.data);
   } catch (e) {
     console.log(e);
   }

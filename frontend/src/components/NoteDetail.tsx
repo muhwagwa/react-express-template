@@ -1,14 +1,25 @@
 import { useParams } from "react-router-dom";
-import { notes } from "../note.json";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function NoteDetail() {
     const { id } = useParams();
-    const note = notes.find((x) => String(x?.id) === id)
+    const [post, setPost] = useState(null)
+    useEffect(() => {
+      axios.get('http://localhost:3000/posts/' + id)
+        .then(response => {
+          setPost(response.data);
+          console.log(post)
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }, [id])
   return (
-    <div>
-        <p>{note?.id}</p>
-        <p>{note?.title}</p>
-        <p>{note?.content}</p>
+    post && <div>
+        <p>{post?.id}</p>
+        <p>{post?.title}</p>
+        <p>{post?.content}</p>
     </div>
   );
 }

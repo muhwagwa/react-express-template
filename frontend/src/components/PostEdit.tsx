@@ -13,7 +13,7 @@ function PostEdit() {
       navigate("/posts/" + id);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: Event) => {
         e.preventDefault();
         axios.put('http://localhost:3000/posts/' + id, {
             title: title,

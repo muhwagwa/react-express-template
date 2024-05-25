@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Stack } from "@mui/material";
 
-function NoteDetail() {
+function PostDetail() {
     const { id } = useParams();
     const navigate = useNavigate()
     const [post, setPost] = useState();
@@ -40,4 +40,4 @@ function NoteDetail() {
   );
 }
 
-export default NoteDetail;
+export default PostDetail;

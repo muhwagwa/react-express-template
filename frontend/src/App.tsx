@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Note from './components/Note';
+import Post from './components/Post';
 import Grid from '@mui/material/Grid';
-// import notes from './note';
 import Login from './components/Login';
 import axios from 'axios';
 
@@ -30,12 +29,12 @@ function App() {
         {isLoggedIn ? 
         <div>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {posts?.map(noteItem => (
-            <Grid item key={noteItem.id} xs={4}>
-              <Note
-                id={noteItem.id}
-                title={noteItem.title}
-                content={noteItem.content}
+          {posts?.map(postItem => (
+            <Grid item key={postItem.id} xs={4}>
+              <Post
+                id={postItem.id}
+                title={postItem.title}
+                content={postItem.content}
               />
             </Grid>
           ))}

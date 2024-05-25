@@ -1,15 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Button, Stack } from "@mui/material";
 
 function NoteDetail() {
     const { id } = useParams();
+    const navigate = useNavigate()
     const [post, setPost] = useState();
+
+    const navigateEdit=()=>{
+      navigate("edit");
+    }
+
     const fetchPost = (id: string) => {
       axios.get('http://localhost:3000/posts/' + id)
         .then(response => {
           setPost(response.data);
-          console.log(response.data)
         })
         .catch(error => {
           console.log(error);
@@ -20,14 +26,15 @@ function NoteDetail() {
         fetchPost(id);
       }
     }, [id])
+
   return (
     <div>
       {post ? (
-        <div>
-          <p>{post?.id}</p>
-          <p>{post?.title}</p>
-          <p>{post?.content}</p>
-        </div>
+        <Stack spacing={2}>
+          <h3>{post?.title}</h3>
+          <div>{post?.content}</div>
+          <Button onClick={() => navigateEdit()}> Edit </Button>
+        </Stack>
       ) : <p>loading</p>}
     </div>
   );

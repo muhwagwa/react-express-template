@@ -8,9 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const navigate = useNavigate();
-  const toLogin=()=>{
-      navigate("/login");
-  }
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

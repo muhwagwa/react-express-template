@@ -1,19 +1,20 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { TextField } from '@mui/material';
+import { Link, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../hooks/useAuth';
 
 
 function Login() {
+    const { login } = useAuth();
+
     const navigate = useNavigate();
-    const toFindPassword=()=>{
-        navigate("/register");
-    }
     const toRegister=()=>{
         navigate("/register");
     }
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -27,6 +28,9 @@ function Login() {
         })
         .then(resp => {
             console.log("Login Success")
+            login({
+                username: username,
+            });
             navigate("/");
         })
         .catch(error => {
@@ -69,7 +73,9 @@ function Login() {
             </Stack>
             </form>
             <Button variant='outlined' onClick={toRegister}>Register</Button>
-            <Button onClick={toFindPassword}>Don't remember your password?</Button>
+            <Link href="register" variant="body2">
+            {"Don't remember your password?"}
+            </Link>
     </Stack>
   );
 }

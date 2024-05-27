@@ -1,13 +1,44 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { Link, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 
 function Login() {
-  return (
+    const navigate = useNavigate();
+    const toFindPassword=()=>{
+        navigate("/register");
+    }
+    const toRegister=()=>{
+        navigate("/register");
+    }
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e: Event) => {
+        e.preventDefault();
+        console.log(username)
+        console.log(password)
+        axios.post('http://localhost:3000/login', {
+            username: username,
+            password: password,
+        })
+        .then(resp => {
+            console.log("Login Success")
+            navigate("/");
+        })
+        .catch(error => {
+            console.log(error);
+            navigate("/login");
+        });
+    }
+
+    return (
     <Stack spacing={2} direction="column">
         <h3>Sign in</h3>
-          <form className="form" noValidate>
+          <form className="form" noValidate onSubmit={handleSubmit}>
             <Stack spacing={1} direction="column">
             <TextField
                 variant="outlined"
@@ -15,6 +46,7 @@ function Login() {
                 id="username"
                 label="Username"
                 name="username"
+                onChange={(e) => setUsername(e.target.value)}
                 autoFocus
             />
             <TextField
@@ -24,6 +56,7 @@ function Login() {
                 label="Password"
                 type="password"
                 id="password"
+                onChange={(e) => setPassword(e.target.value)}
             />
             <Button
                 type="submit"
@@ -33,16 +66,10 @@ function Login() {
             >
                 Sign In
             </Button>
-            <Button
-                variant="outlined"
-                type="submit"
-            >
-                Register</Button>
-            <Link href="#" variant="body2">
-                {"Don't remember your password?"}
-            </Link>
             </Stack>
-          </form>
+            </form>
+            <Button variant='outlined' onClick={toRegister}>Register</Button>
+            <Button onClick={toFindPassword}>Don't remember your password?</Button>
     </Stack>
   );
 }

@@ -14,9 +14,9 @@ function Post({ id, title, content }: { id: string, title: string, content: stri
   return (
     <Card variant="outlined" sx={{ height: '100%' }}>
       <CardContent>
-        <Button onClick={toPostDetail}>More</Button>
         <h5>{title}</h5>
         <p>{content}</p>
+        <Button onClick={toPostDetail}>More</Button>
       </CardContent>
     </Card>
   );

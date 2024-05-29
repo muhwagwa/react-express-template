@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import Footer from './components/Footer';
-import Header from './components/Header';
 import { useAuth } from './hooks/useAuth';
 import { AuthContext } from './auth/AuthContext';
 import Navbar from './components/Navbar';
+import './App.css';
 
 const App = () => {
 
@@ -13,8 +13,12 @@ const App = () => {
     <AuthContext.Provider value={{ user, setUser }}>
       <div>{localStorage.getItem("user")}</div>
       <Navbar />
-      <Outlet />
-      <Footer />
+      <div className='content-zone'>
+        <Outlet />
+      </div>
+      <div className='footer-zone'>
+        <Footer />
+      </div>
     </AuthContext.Provider>
   )
 }

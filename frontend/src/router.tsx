@@ -5,6 +5,7 @@ import PostDetail from "./components/PostDetail";
 import PostEdit from "./components/PostEdit";
 import Home from "./Home";
 import App from "./App";
+import PostCreate from "./components/PostCreate";
 
 export const router = createBrowserRouter ([
     { 
@@ -16,6 +17,7 @@ export const router = createBrowserRouter ([
         { path: "/login", element: <Login />},
         { path: "/register", element: <Register />},
         { path: "/posts", element: <Home />},
+        { path: "/posts/create", element: <PostCreate />},
         { path: "/posts/:id", element: <PostDetail />},
         { path: "/posts/:id/edit", element: <PostEdit />},
       ]

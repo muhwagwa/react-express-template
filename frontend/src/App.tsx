@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { useAuth } from './hooks/useAuth';
 import { AuthContext } from './auth/AuthContext';
+import Navbar from './components/Navbar';
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <div>{localStorage.getItem("user")}</div>
-      <Header />
+      <Navbar />
       <Outlet />
       <Footer />
     </AuthContext.Provider>

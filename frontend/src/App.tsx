@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import { useAuth } from './hooks/useAuth';
 import { AuthContext } from './auth/AuthContext';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import './App.css';
 
 const App = () => {

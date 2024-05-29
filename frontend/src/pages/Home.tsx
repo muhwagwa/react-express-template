@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Home.css';
-import Post from './components/Post';
+import Post from '../components/Post/Post';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { Button } from '@mui/material';

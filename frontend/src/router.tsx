@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import PostDetail from "./components/PostDetail";
-import PostEdit from "./components/PostEdit";
-import Home from "./Home";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+import PostDetail from "./pages/Post/PostDetail";
+import PostEdit from "./pages/Post/PostEdit";
+import Home from "./pages/Home";
 import App from "./App";
-import PostCreate from "./components/PostCreate";
+import PostCreate from "./pages/Post/PostCreate";
 
 export const router = createBrowserRouter ([
     { 

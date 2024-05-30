@@ -1,0 +1,9 @@
+.btn-grp-postdetail {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.post-title {
+    text-align: center;
+}

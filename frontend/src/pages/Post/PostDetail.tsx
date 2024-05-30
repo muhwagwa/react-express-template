@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Stack } from "@mui/material";
+import './PostDetail.css'
 
 function PostDetail() {
     const { id } = useParams();
@@ -10,6 +11,10 @@ function PostDetail() {
 
     const navigateEdit=()=>{
       navigate("edit");
+    }
+
+    const navigateHome=()=>{
+      navigate("/posts");
     }
 
     const fetchPost = (id: string) => {
@@ -30,11 +35,16 @@ function PostDetail() {
   return (
     <div>
       {post ? (
+        <>
+        <div className="btn-grp-postdetail">
+          <Button variant="outlined" onClick={() => navigateHome()}> Back </Button>
+          <Button variant="outlined" onClick={() => navigateEdit()}> Edit </Button>
+        </div>
         <Stack spacing={2}>
-          <h3>{post?.title}</h3>
+          <h1 className="post-title">{post?.title}</h1>
           <div>{post?.content}</div>
-          <Button onClick={() => navigateEdit()}> Edit </Button>
         </Stack>
+        </>
       ) : <p>loading</p>}
     </div>
   );

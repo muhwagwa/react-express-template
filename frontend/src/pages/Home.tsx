@@ -27,7 +27,7 @@ function Home() {
 
   return (
     <>
-    <div>
+    <div className='btn-new-post'>
       <Button variant="contained" onClick={toPostCreate}>New</Button>
     </div>
     <div>

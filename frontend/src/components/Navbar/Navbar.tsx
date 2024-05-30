@@ -7,22 +7,28 @@ function Navbar() {
     const { logout } = useAuth();
     const navigate = useNavigate();
 
-
-    const pages = ['Posts', 'Templates', 'About'];
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
+    const handleToHome= () => {
+        navigate('/posts')
+    };
+
+    const handleToAbout= () => {
+        navigate('/about')
+    };
+
+    const handleToMyPosts= () => {
+        navigate('/posts');
+        setAnchorElUser(null);
+    };
+
+    const handleToProfile= () => {
+        navigate('/profile');
+        setAnchorElUser(null);
     };
 
     const handleCloseUserMenu = () => {
@@ -58,13 +64,11 @@ function Navbar() {
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
                     color="inherit"
                     >
                     </IconButton>
                 <Menu
                     id="menu-appbar"
-                    anchorEl={anchorElNav}
                     anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'left',
@@ -74,29 +78,34 @@ function Navbar() {
                         vertical: 'top',
                         horizontal: 'left',
                     }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
+                    open={true}
                     sx={{
                         display: { xs: 'block', md: 'none' },
                     }}
                     >
-                    {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">{page}</Typography>
+                        <MenuItem key={'Home'}>
+                        <Typography textAlign="center">{'Home'}</Typography>
                         </MenuItem>
-                    ))}
+                        <MenuItem key={'About'}>
+                        <Typography textAlign="center">{'About'}</Typography>
+                        </MenuItem>
                 </Menu>
                 </Box>
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    {pages.map((page) => (
                     <Button
-                        key={page}
-                        onClick={handleCloseNavMenu}
+                        key={'Home'}
+                        onClick={handleToHome}
                         sx={{ my: 2, color: 'white', display: 'block' }}
                     >
-                        {page}
+                        {'Home'}
                     </Button>
-                    ))}
+                    <Button
+                        key={'About'}
+                        onClick={handleToAbout}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        {'About'}
+                    </Button>
                 </Box>
                 <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
@@ -120,11 +129,15 @@ function Navbar() {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                    {settings.map((setting) => (
-                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
+                        <MenuItem key={'Profile'} onClick={handleToProfile}>
+                        <Typography textAlign="center">{'Profile'}</Typography>
                         </MenuItem>
-                    ))}
+                        <MenuItem key={'My Posts'} onClick={handleToMyPosts}>
+                        <Typography textAlign="center">{'My Posts'}</Typography>
+                        </MenuItem>
+                        <MenuItem key={'Logout'} onClick={logout}>
+                        <Typography textAlign="center">{'Logout'}</Typography>
+                        </MenuItem>
                     </Menu>
                     </Box>
             </Toolbar>

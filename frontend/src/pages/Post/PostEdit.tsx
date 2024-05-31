@@ -5,6 +5,7 @@ import { Button, Stack, TextField } from "@mui/material";
 
 function PostEdit() {
     const { id } = useParams();
+    
     const navigate = useNavigate()
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");

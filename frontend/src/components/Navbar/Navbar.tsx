@@ -4,7 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
 
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -28,6 +28,11 @@ function Navbar() {
 
     const handleToProfile= () => {
         navigate('/profile');
+        setAnchorElUser(null);
+    };
+
+    const handleToLogin= () => {
+        navigate('/login');
         setAnchorElUser(null);
     };
 
@@ -107,6 +112,7 @@ function Navbar() {
                         {'About'}
                     </Button>
                 </Box>
+                {user ? 
                 <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -139,7 +145,17 @@ function Navbar() {
                         <Typography textAlign="center">{'Logout'}</Typography>
                         </MenuItem>
                     </Menu>
-                    </Box>
+                </Box>
+                :
+                <Button
+                        key={'Login'}
+                        onClick={handleToLogin}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        {'Login'}
+                    </Button>
+                }
+                
             </Toolbar>
         </Container>
     </AppBar>

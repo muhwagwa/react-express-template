@@ -6,8 +6,8 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-
 function Home() {
+
   const [posts, setPosts] = useState<any[]>([])
 
   const navigate = useNavigate()
@@ -25,6 +25,7 @@ function Home() {
       });
   }, [])
 
+  
   return (
     <>
     <div className='btn-new-post'>

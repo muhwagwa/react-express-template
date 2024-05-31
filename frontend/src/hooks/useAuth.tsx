@@ -9,6 +9,7 @@ export const useAuth = () => {
     useEffect(() => {
         const user = getItem("user");
         if (user) {
+            console.log(user)
             addUser(JSON.parse(user));
         }
     }, [addUser, getItem]);
@@ -21,5 +22,12 @@ export const useAuth = () => {
         removeUser();
     };
 
-    return { user, login, logout, setUser };
+    const getUsername = () => {
+        const user = getItem("user")
+        if (user) {
+            return user["username"];
+        }
+    }
+
+    return { user, login, logout, setUser, getUsername };
 }

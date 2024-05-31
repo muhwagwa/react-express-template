@@ -11,7 +11,6 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-      <div>{localStorage.getItem("user")}</div>
       <Navbar />
       <div className='content-zone'>
         <Outlet />

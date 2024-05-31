@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Button, Stack, TextField } from "@mui/material";
+import { useAuth } from "../../hooks/useAuth";
 
 function PostCreate() {
+    const { user } = useAuth();
+
     const navigate = useNavigate()
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -17,6 +20,7 @@ function PostCreate() {
         axios.post('http://localhost:3000/posts/', {
             title: title,
             content: content,
+            author: user,
         })
         .then(resp => {
             navigate("/posts/");
